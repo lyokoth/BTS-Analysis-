@@ -1,4 +1,4 @@
-# BTS-Analysis-
+# BTS-Analysis-   5% complete 
 A simple project comparing the top 5 most popular BTS albums from the past 5 years
 
 ## To do's: ##
