@@ -1,0 +1,60 @@
+#Python Environment 
+
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import csv
+
+#Authentication - without user to spotify API
+
+client_credentials_manager = SpotifyClientCredentials(client_id="513546ee9bef4e9caae7a75eb3c796a4", client_secret="dd43dfe8f22c438ab5384608ace7e58a")
+sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
+
+bts = sp.artist_albums('3Nrfpe0tUJi4K4DXYWgMUX')
+
+proof_tracks = sp.album_tracks('spotify:album:6al2VdKbb6FIz9d7lU7WRB')
+mots7_tracks = sp.album_tracks('spotify:album:5W1XY5ucNATjTULERvXx9j')
+sla_tracks = sp.album_tracks('spotify:album:5r35iS0uSSoQBKzQj0IeI3')
+youth_tracks = sp.album_tracks('spotify:album:442zUwKHCTO47XPF7cUSqY')
+be_tracks = sp.album_tracks('spotify:album:6nYfHQnvkvOTNHnOhDT3sr')
+discography = {}
+
+proof_songs = proof_tracks['items']
+while proof_tracks['next']:
+    proof_tracks = sp.next(proof_tracks)
+    proof_songs.extend(proof_tracks['items'])
+
+mots7_songs = mots7_tracks['items']
+while mots7_tracks['next']:
+    mots7_tracks = sp.next(mots7_tracks)
+    mots7_songs.extend(mots7_tracks['items'])
+
+
+sla_songs = sla_tracks['items']
+while sla_tracks['next']:
+    sla_tracks = sp.next(sla_tracks)
+    sla_songs.extend(sla_tracks['items'])
+
+
+youth_songs = youth_tracks['items']
+while youth_tracks['next']:
+    youth_tracks = sp.next(youth_tracks)
+    youth_songs.extend(youth_tracks['items'])
+
+be_songs = be_tracks['items']
+while be_tracks['next']:
+    be_tracks = sp.next(be_tracks)
+    be_songs.extend(be_tracks['items'])
+
+for song in proof_songs:
+    discography[song['name']] = song
+
+
+for song in mots7_songs:
+    discography[song['name']] = song
+
+
+for song in sla_songs:
+    discography[song['name']] = song
+
+for song in youth_songs:
+    discography[song['name']] = song
